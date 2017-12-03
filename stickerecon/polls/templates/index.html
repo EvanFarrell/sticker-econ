@@ -13,7 +13,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">        
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
 
@@ -28,21 +28,24 @@
             <tr>
               <td>{{sticker.votes}}</td>
               <td>{{sticker.name}}</td>
-              <td><button id="up">Up</button></td>
-              <td><button id="down">Down</button></td>              
+              <td><button onclick="window.location.reload()" id="up">Up</button></td>
+              <td><button onclick="window.location.reload()" id="down">Down</button></td>
             </tr>
-            
+            {% endfor %}
+
         </table>
     </body>
 
     <script type="text/javascript">
+        var id = {{ sticker.id }}
+        console.error(id);
 
         $('#up').click(function(){
             $.ajax({
                 type:"POST",
-                url:"/upvote/{{ sticker.id }}",
+                url:"upvote/" + id + '/',
                 success: function(){
-                    {{ sticker.votes++ }};
+
                 }
            });
         });
@@ -50,9 +53,9 @@
             down++;
             $.ajax({
                 type:"POST",
-                url:"/downvote/{{ sticker.id }}",
+                url:"downvote/" + id + '/',
                 success: function(){
-                    {{ sticker.votes-- }};
+                    console.log(url);
                 }
            });
         });

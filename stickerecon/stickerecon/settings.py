@@ -70,6 +70,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIRS = (
+    os.path.join('', 'templates'),
+)
+
 WSGI_APPLICATION = 'stickerecon.wsgi.application'
 
 
