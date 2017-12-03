@@ -13,24 +13,48 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">        
     </head>
     <body>
 
-        <table style="width:100%">
+        <table id="customers" style="width:100%">
             <tr>
               <th>Score</th>
               <th>Name</th>
+              <th>Upvote</th>
+              <th>DownVote</th>
             </tr>
-            {% for sticker in stickers%}
+            {% for sticker in stickers %}
             <tr>
               <td>{{sticker.votes}}</td>
               <td>{{sticker.name}}</td>
+              <td><button id="up">Up</button></td>
+              <td><button id="down">Down</button></td>              
             </tr>
-          </table>
-
+            
+        </table>
     </body>
 
-    <script>
-        
+    <script type="text/javascript">
+
+        $('#up').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"/upvote/{{ sticker.id }}",
+                success: function(){
+                    {{ sticker.votes++ }};
+                }
+           });
+        });
+        $('#down').click(function(){
+            down++;
+            $.ajax({
+                type:"POST",
+                url:"/downvote/{{ sticker.id }}",
+                success: function(){
+                    {{ sticker.votes-- }};
+                }
+           });
+        });
     </script>
 </html>
