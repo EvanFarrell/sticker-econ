@@ -10,4 +10,17 @@ def home(request):
 
     return render(request, "index.html", context)
 
-# Create your views here.
+def upvote(request, sticker_id):
+    sticker = Sticker.objects.get(id=sticker_ids)
+    sticker.votes += 1
+    sticker.save()
+
+def upvote(request, sticker_id):
+    sticker = Sticker.objects.get(id=sticker_id)
+    sticker.votes += 1
+    sticker.save()
+
+def downvote(request, sticker_id):
+    sticker = Sticker.objects.get(id=sticker_id)
+    sticker.votes += 1
+    sticker.save()

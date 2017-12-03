@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import polls.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^/', polls.views.home)
+    url(r'^$', polls.views.home),
+    url(r'^upvote/(?P<sticker_id>[0-9]+)/$', polls.views.upvote),
+    url(r'^downvote/(?P<sticker_id>[0-9]+)/$', polls.views.downvote),
 ]
